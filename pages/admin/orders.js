@@ -1,13 +1,13 @@
 import { useSession } from 'next-auth/client';
 
-import MainApp from 'components/MainApp';
+import OrderManagement from 'components/admin/OrderManagement';
 
-function IndexPage() {
+function OrdersPage() {
   const [session, loading] = useSession();
 
   return (
     <>
-      {session && <MainApp />}
+      {session && <OrderManagement />}
       {!session && (
         <p>
           <a href="/api/auth/signin">Sign in</a>
@@ -17,4 +17,4 @@ function IndexPage() {
   );
 }
 
-export default IndexPage;
+export default OrdersPage;
