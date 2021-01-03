@@ -53,13 +53,13 @@ const callbacks = {};
 //   return false;
 // };
 
-// callbacks.jwt = async function jwt(token, user) {
-//   if (user) {
-//     token = { accessToken: user.accessToken };
-//   }
+callbacks.jwt = async function jwt(token, user) {
+  if (user) {
+    token = { accessToken: user.accessToken };
+  }
 
-//   return token;
-// };
+  return token;
+};
 
 // callbacks.session = async function session(session, token) {
 //   session.accessToken = token.accessToken;

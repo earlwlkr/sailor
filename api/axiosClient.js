@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const axiosClient = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     'content-type': 'application/json',
   },
