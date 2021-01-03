@@ -3,6 +3,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 
 import OrderAPI from 'api/OrderAPI';
+import { currencyFormat } from 'core/utils';
 
 export default function OrderManagement() {
   const { error, data: dataOrders, mutate } = useSWR('/api/orders', OrderAPI.list);
@@ -35,7 +36,7 @@ export default function OrderManagement() {
               <Tr>
                 <Td>{order.time}</Td>
                 <Td>{customerName}</Td>
-                <Td isNumeric>{order.total}</Td>
+                <Td isNumeric>{currencyFormat(order.total)}</Td>
               </Tr>
             );
           })}

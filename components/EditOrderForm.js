@@ -11,7 +11,9 @@ import {
   FormHelperText,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+
 import DatePicker from 'components/base/DatePicker';
+import NumberInput from 'components/base/NumberInput';
 
 export default function EditOrderForm({ onSubmit }) {
   const { handleSubmit, errors, register, control, formState } = useForm();
@@ -43,12 +45,12 @@ export default function EditOrderForm({ onSubmit }) {
       </FormControl>
       <FormControl isInvalid={errors.subtotal}>
         <FormLabel htmlFor="subtotal">Subtotal</FormLabel>
-        <Input name="subtotal" placeholder="Input subtotal" type="number" ref={register()} />
+        <NumberInput name="subtotal" control={control} placeholder="Input subtotal" ref={register()} />
         <FormErrorMessage>{errors.subtotal && errors.subtotal.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.total}>
         <FormLabel htmlFor="total">Total</FormLabel>
-        <Input name="total" placeholder="Input total" type="number" ref={register()} />
+        <NumberInput name="total" control={control} placeholder="Input total" ref={register()} />
         <FormErrorMessage>{errors.total && errors.total.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.note}>
