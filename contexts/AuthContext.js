@@ -78,16 +78,16 @@ function AuthProvider({ children }) {
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const init = async () => {
-      const idToken = await localStorage.getItem(AUTH_KEY);
-      setAuthHeader(idToken);
+      const idToken = localStorage.getItem(AUTH_KEY);
       console.log('idToken', idToken);
+      if (!idToken) {
+        authFailure();
+        return;
+      }
+      setAuthHeader(idToken);
       try {
-        if (idToken) {
-          const res = await AuthAPI.loginIdToken(idToken);
-          authSuccess(idToken, res.user);
-        } else {
-          authFailure();
-        }
+        const res = await AuthAPI.loginIdToken(idToken);
+        authSuccess(idToken, res.user);
       } catch (err) {
         authFailure();
       }
@@ -109,14 +109,12 @@ function AuthProvider({ children }) {
         authFailure();
       },
     }),
-    []
+    [],
   );
 
   return (
     <AuthStateContext.Provider value={state}>
-      <AuthFunctionsContext.Provider value={authContext}>
-        {children}
-      </AuthFunctionsContext.Provider>
+      <AuthFunctionsContext.Provider value={authContext}>{children}</AuthFunctionsContext.Provider>
     </AuthStateContext.Provider>
   );
 }
