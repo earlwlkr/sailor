@@ -27,7 +27,7 @@ export default function OrderManagement() {
           return (
             <Tr>
               <Td>{order.time}</Td>
-              <Td>{order.customer}</Td>
+              <Td>{order.customer || 'N/A'}</Td>
               <Td isNumeric>{order.total}</Td>
             </Tr>
           );
