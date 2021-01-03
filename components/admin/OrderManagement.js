@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import useSWR from "swr";
 
-import Menu from "components/layout/Menu";
+import AdminLayout from "components/layout/AdminLayout";
 
 import OrderAPI from "api/OrderAPI";
 
@@ -28,34 +28,27 @@ export default function OrderManagement() {
   }
 
   return (
-    <>
-      <Grid templateColumns="repeat(6, 1fr)" gap={4}>
-        <GridItem colSpan={{ md: 1, sm: 6 }}>
-          <Menu />
-        </GridItem>
-        <GridItem colSpan={{ md: 4, sm: 6 }}>
-          <Table variant="simple">
-            <Thead>
+    <AdminLayout>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Time</Th>
+            <Th>Customer</Th>
+            <Th isNumeric>Total</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {dataOrders.map((order) => {
+            return (
               <Tr>
-                <Th>Time</Th>
-                <Th>Customer</Th>
-                <Th isNumeric>Total</Th>
+                <Td>{order.time}</Td>
+                <Td>{order.customer}</Td>
+                <Td isNumeric>{order.total}</Td>
               </Tr>
-            </Thead>
-            <Tbody>
-              {dataOrders.map((order) => {
-                return (
-                  <Tr>
-                    <Td>{order.time}</Td>
-                    <Td>{order.customer}</Td>
-                    <Td isNumeric>{order.total}</Td>
-                  </Tr>
-                );
-              })}
-            </Tbody>
-          </Table>
-        </GridItem>
-      </Grid>
-    </>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </AdminLayout>
   );
 }
