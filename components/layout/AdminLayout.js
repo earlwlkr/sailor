@@ -8,7 +8,10 @@ import { useAuthState } from 'contexts/AuthContext';
 export default function AdminLayout({ children }) {
   const { user, isLoading } = useAuthState();
 
-  if (!user && isLoading) {
+  if (!user) {
+    if (isLoading) {
+      return <p>Checking...</p>;
+    }
     return (
       <p>
         <a href="/auth/login">Sign in</a>
