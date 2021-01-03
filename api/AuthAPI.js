@@ -10,7 +10,7 @@ class AuthAPI {
   }
 
   loginIdToken(token) {
-    const url = '/auth/local';
+    const url = '/auth/idToken';
     const payload = { token };
     return axiosClient.post(url, payload);
   }
