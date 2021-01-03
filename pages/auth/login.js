@@ -9,11 +9,14 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from '@chakra-ui/react';
-import { csrfToken } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
 
-function SignIn({ csrfToken }) {
+import { useAuthFunctions } from 'contexts/AuthContext';
+
+function SignIn() {
   const { handleSubmit, errors, register, formState } = useForm();
+
+  const { signIn } = useAuthFunctions();
 
   function validateEmail(value) {
     if (!value) {
@@ -27,13 +30,12 @@ function SignIn({ csrfToken }) {
     } else return true;
   }
 
-  function onSubmit(values) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
-    });
+  async function onSubmit(values) {
+    try {
+      await signIn(values);
+    } catch (err) {
+      
+    }
   }
 
   return (
@@ -41,9 +43,8 @@ function SignIn({ csrfToken }) {
       <Grid templateColumns="repeat(1, 1fr)" gap={3}>
         <form
           method="post"
-          action="/api/auth/callback/credentials"
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <FormControl isInvalid={errors.email}>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
@@ -80,11 +81,5 @@ function SignIn({ csrfToken }) {
     </Center>
   );
 }
-
-SignIn.getInitialProps = async (context) => {
-  return {
-    csrfToken: await csrfToken(context),
-  };
-};
 
 export default SignIn;

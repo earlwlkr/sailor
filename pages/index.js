@@ -1,16 +1,15 @@
-import { useSession } from 'next-auth/client';
-
+import { useAuthState } from 'contexts/AuthContext';
 import MainApp from 'components/MainApp';
 
 function IndexPage() {
-  const [session, loading] = useSession();
+  const { user } = useAuthState();
 
   return (
     <>
-      {session && <MainApp />}
-      {!session && (
+      {user && <MainApp />}
+      {!user && (
         <p>
-          <a href="/api/auth/signin">Sign in</a>
+          <a href="/auth/login">Sign in</a>
         </p>
       )}
     </>

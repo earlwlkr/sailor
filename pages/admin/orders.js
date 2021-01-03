@@ -1,16 +1,15 @@
-import { useSession } from 'next-auth/client';
-
+import { useAuthState } from 'contexts/AuthContext';
 import OrderManagement from 'components/admin/OrderManagement';
 
 function OrdersPage() {
-  const [session, loading] = useSession();
+  const { user } = useAuthState();
 
   return (
     <>
-      {session && <OrderManagement />}
-      {!session && (
+      {user && <OrderManagement />}
+      {!user && (
         <p>
-          <a href="/api/auth/signin">Sign in</a>
+          <a href="/auth/login">Sign in</a>
         </p>
       )}
     </>

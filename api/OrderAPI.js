@@ -8,12 +8,12 @@ class OrderAPI {
     return axiosClient.get(url);
   }
 
-  filter(queries) {
-    const url = '/bookings';
-    const query = qs.stringify(queries);
+  // filter(queries) {
+  //   const url = '/orders';
+  //   const query = qs.stringify(queries);
 
-    return axiosClient.get(`${url}?${query}`);
-  }
+  //   return axiosClient.get(`${url}?${query}`);
+  // }
 }
 
 const instance = new OrderAPI();
