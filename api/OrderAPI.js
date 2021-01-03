@@ -8,6 +8,11 @@ class OrderAPI {
     return axiosClient.get(url);
   }
 
+  create(payload) {
+    const url = '/orders';
+    return axiosClient.post(url, payload);
+  }
+
   // filter(queries) {
   //   const url = '/orders';
   //   const query = qs.stringify(queries);

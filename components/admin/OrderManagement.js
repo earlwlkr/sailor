@@ -1,8 +1,6 @@
-import { Grid, GridItem, Box, Table, Thead, Tbody, Tr, Th, Td, TableCaption } from '@chakra-ui/react';
+import { Heading, Table, Thead, Tbody, Tr, Th, Td, TableCaption } from '@chakra-ui/react';
 import Link from 'next/link';
 import useSWR from 'swr';
-
-import AdminLayout from 'components/layout/AdminLayout';
 
 import OrderAPI from 'api/OrderAPI';
 
@@ -14,25 +12,35 @@ export default function OrderManagement() {
   }
 
   return (
-    <Table variant="simple">
-      <Thead>
-        <Tr>
-          <Th>Time</Th>
-          <Th>Customer</Th>
-          <Th isNumeric>Total</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {dataOrders.map((order) => {
-          return (
-            <Tr>
-              <Td>{order.time}</Td>
-              <Td>{order.customer || 'N/A'}</Td>
-              <Td isNumeric>{order.total}</Td>
-            </Tr>
-          );
-        })}
-      </Tbody>
-    </Table>
+    <>
+      <Heading as="h1" size="lg">
+        Order Management
+      </Heading>
+
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Time</Th>
+            <Th>Customer</Th>
+            <Th isNumeric>Total</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {dataOrders.map((order) => {
+            let customerName = 'N/A';
+            if (order.customer) {
+              customerName = order.customer.name;
+            }
+            return (
+              <Tr>
+                <Td>{order.time}</Td>
+                <Td>{customerName}</Td>
+                <Td isNumeric>{order.total}</Td>
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </>
   );
 }
