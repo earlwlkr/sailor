@@ -1,5 +1,5 @@
 import { useAuthState } from 'contexts/AuthContext';
-import MainApp from 'components/MainApp';
+import AdminDashboard from 'components/admin/AdminDashboard';
 
 function IndexPage() {
   const { userToken, isLoading } = useAuthState();
@@ -10,7 +10,7 @@ function IndexPage() {
 
   return (
     <>
-      {userToken && <MainApp />}
+      {userToken && <AdminDashboard />}
       {!userToken && (
         <p>
           <a href="/auth/login">Sign in</a>

@@ -1,6 +1,6 @@
 import Menu from 'components/layout/Menu';
 
-export default function MainApp() {
+export default function AdminDashboard() {
   return (
     <>
       <Menu />
