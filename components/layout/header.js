@@ -56,7 +56,7 @@ function CreateOrderAction() {
 
 export default function Header() {
   return (
-    <div>
+    <div style={{ marginBottom: 12 }}>
       <CreateOrderAction />
       <Button>New Expense</Button>
     </div>
