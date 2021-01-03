@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import {
   Grid,
   Center,
@@ -11,12 +12,19 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
-import { useAuthFunctions } from 'contexts/AuthContext';
+import { useAuthState, useAuthFunctions } from 'contexts/AuthContext';
 
 function SignIn() {
+  const router = useRouter();
   const { handleSubmit, errors, register, formState } = useForm();
 
   const { signIn } = useAuthFunctions();
+  const { userToken } = useAuthState();
+  console.log('userToken', userToken);
+  if (userToken) {
+    router.push('/');
+    return; 
+  }
 
   function validateEmail(value) {
     if (!value) {

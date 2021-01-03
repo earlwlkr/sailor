@@ -81,10 +81,6 @@ function AuthProvider({ children }) {
       const idToken = await localStorage.getItem(AUTH_KEY);
       setAuthHeader(idToken);
       console.log('idToken', idToken);
-      // toast({
-      //   message: `init ${idToken}`,
-      //   intent: 'INFO',
-      // });
       try {
         if (idToken) {
           const res = await AuthAPI.loginIdToken(idToken);
