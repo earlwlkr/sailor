@@ -34,16 +34,15 @@ export default function AdminDashboard() {
           {merged.map((item) => {
             let source = 'N/A';
             let isIncome = !!item.customer;
-            let amount = 0;
+            const amount = item.total || item.amount || 0;
 
             // income
             if (isIncome) {
               if (item.customer) {
                 source = item.customer.name;
               }
-              amount = item.total;
             } else {
-              amount = item.amount;
+              source = item.description;
             }
 
             return (
