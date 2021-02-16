@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import EditOrderForm from 'components/EditOrderForm';
+import EditOrderForm from 'components/form/EditOrderForm';
 
 import OrderAPI from 'api/OrderAPI';
 
