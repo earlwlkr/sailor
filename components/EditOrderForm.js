@@ -43,22 +43,24 @@ export default function EditOrderForm({ onSubmit }) {
         />
         <FormErrorMessage>{errors.time && errors.time.message}</FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={errors.subtotal}>
+      <FormControl isInvalid={errors.subtotal} mt={3}>
         <FormLabel htmlFor="subtotal">Subtotal</FormLabel>
         <NumberInput name="subtotal" control={control} placeholder="Input subtotal" ref={register()} />
         <FormErrorMessage>{errors.subtotal && errors.subtotal.message}</FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={errors.total}>
+      <FormControl isInvalid={errors.total} mt={3}>
         <FormLabel htmlFor="total">Total</FormLabel>
         <NumberInput name="total" control={control} placeholder="Input total" ref={register()} />
         <FormErrorMessage>{errors.total && errors.total.message}</FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={errors.note}>
+      <FormControl isInvalid={errors.note} mt={3}>
         <FormLabel htmlFor="note">Note</FormLabel>
         <Input name="note" placeholder="Input note" type="note" ref={register()} />
         <FormErrorMessage>{errors.note && errors.note.message}</FormErrorMessage>
       </FormControl>
-      <Button type="submit">Create Order</Button>
+      <Button type="submit" colorScheme="blue" mt={4}>
+        Create Order
+      </Button>
     </form>
   );
 }
