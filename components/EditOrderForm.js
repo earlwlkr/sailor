@@ -12,8 +12,9 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
-import DatePicker from 'components/base/DatePicker';
-import NumberInput from 'components/base/NumberInput';
+import DatePicker from 'components/form/DatePicker';
+import NumberInput from 'components/form/NumberInput';
+import CustomerInput from 'components/form/CustomerInput';
 
 export default function EditOrderForm({ onSubmit }) {
   const { handleSubmit, errors, register, control, formState } = useForm();
@@ -55,7 +56,7 @@ export default function EditOrderForm({ onSubmit }) {
       </FormControl>
       <FormControl isInvalid={errors.note} mt={3}>
         <FormLabel htmlFor="note">Note</FormLabel>
-        <Input name="note" placeholder="Input note" type="note" ref={register()} />
+        <CustomerInput name="note" placeholder="Input note" type="note" ref={register()} />
         <FormErrorMessage>{errors.note && errors.note.message}</FormErrorMessage>
       </FormControl>
       <Button type="submit" colorScheme="blue" mt={4}>
